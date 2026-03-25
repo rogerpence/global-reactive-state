@@ -3,3 +3,5 @@
 
 <a href="/test1">Test 1</a><br />
 <a href="/test2">Test 2</a><br />
+
+<a href="/toast-email">Show email toast</a><br />

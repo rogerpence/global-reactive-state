@@ -30,13 +30,22 @@ export type DownloadProductsCargo = {
 	email: string;
 };
 
+/**
+ * Defines the shape of the payload for the 'EMAIL SENT toast.
+ */
+export type EmailToastCargo = {
+	email: string;
+	message: string;
+};
+
 // --- Action Type Definitions ---
 /**
  * Defines action type constants for type safety and autocompletion.
  */
 export const ActionTypes = {
 	CONTACT_US: 'CONTACT_US',
-	DOWNLOAD_PRODUCT: 'DOWNLOAD_PRODUCT'
+	DOWNLOAD_PRODUCT: 'DOWNLOAD_PRODUCT',
+	TOAST_EMAIL: 'TOAST_EMAIL'
 } as const;
 
 /**
@@ -46,4 +55,5 @@ export const ActionTypes = {
 export interface ActionCargoMap {
 	[ActionTypes.CONTACT_US]: ContactUsCargo;
 	[ActionTypes.DOWNLOAD_PRODUCT]: DownloadProductsCargo;
+	[ActionTypes.TOAST_EMAIL]: EmailToastCargo;
 }

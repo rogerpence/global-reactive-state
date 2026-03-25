@@ -13,6 +13,15 @@ import { ActionTypes, type ActionCargoMap } from '$lib/actionTypes';
  * This file should never need changes.
  */
 
+// --- Reactive State ---
+/**
+ * The internal, writable state rune for the current action.
+ * It holds the active `Action` object or `undefined` if no
+ * action is active.
+ *
+ * This is the source of truth for the action state.
+ * @internal
+ */
 let _action = $state<Action | undefined>(undefined);
 
 // --- Derived Values (for consumers) ---

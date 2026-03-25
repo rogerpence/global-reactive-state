@@ -1,0 +1,46 @@
+body {
+    background-color: azure;
+}
+
+:root {
+  --base-hue: 310deg;
+  --container-padding: 1.5em;
+  --dialog-margin-inline: var(--container-padding);
+  --dialog-padding: 1.5em;
+  --dialog-width: 25em;
+  --dialog-radius: 0.75em;
+  --popover-radius: 0.5em;
+  --popover-width: 20em;
+  --popover-padding: 1em;
+  --button-padding: 0.5em 0.75em;
+  --paragraph-margin: 1.5em;
+  --paragraph-width: 30em;
+}
+
+.my-popover {
+  transition: opacity 0.5s, translate 0.5s, overlay 0.5s allow-discrete,
+    display 0.5s allow-discrete;
+  opacity: 0;
+  translate: 0 1em;
+    position: fixed;
+    inset: auto var(--container-padding) var(--container-padding) auto;
+    padding: var(--popover-padding);
+    max-width: var(--popover-width);
+    width: calc(100% - (2 * var(--container-padding)));
+    border-radius: var(--popover-radius);
+
+  &:popover-open {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@starting-style {
+  .my-popover {
+    &:popover-open {
+      opacity: 0;
+      translate: 0 1em;
+    }
+  }
+}
+
