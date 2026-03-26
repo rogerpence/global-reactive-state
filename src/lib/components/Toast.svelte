@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { type EmailToastCargo, type ToastPersona } from '$lib/actionTypes';
 
-	const AUTO_CLOSE_SECONDS = 4; // Change this value for different auto-close durations
+	const AUTO_CLOSE_SECONDS = 0; // Change this value for different auto-close durations
 	const PROGRESS_REFRESH_MS = 30; // Milliseconds between progress bar updates
 
 	let popover: HTMLDivElement;
@@ -95,4 +95,7 @@
 	<button onclick={closePopover}>Close</button>
 	<h2>{currentData?.title}</h2>
 	<p>{currentData?.message}</p>
+	<div id="popover-progress" class="popover-progress" hidden>
+		<div class="popover-progress-bar"></div>
+	</div>
 </div>
