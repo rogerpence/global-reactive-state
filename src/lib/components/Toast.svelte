@@ -1,20 +1,9 @@
 <script lang="ts">
-	import { type EmailToastCargo } from '$lib/actionTypes';
+	import { onMount } from 'svelte';
+	import { type EmailToastCargo, type ToastPersona } from '$lib/actionTypes';
 
 	let popover: HTMLDivElement;
-	// let closeBtn: HTMLButtonElement;
-	// let progressContainer: HTMLDivElement;
-	// let progressBar: HTMLDivElement;
-
-	// interface Props {
-	// 	message: string;
-	// }
-
-	// let { message } = $props();
-
-	let message: string;
-
-	//message = 'ROGER';
+	let currentData: EmailToastCargo;
 
 	let openPopover: HTMLButtonElement;
 
@@ -23,16 +12,21 @@
 	};
 
 	export const setData = (data: EmailToastCargo) => {
-		message = data.message;
-	};
-
-	const buttonClicked = (e) => {
-		openPopover.click();
+		currentData = data;
 	};
 
 	const closePopover = () => {
 		popover.hidePopover();
 	};
+
+	onMount(() => {
+		popover.addEventListener('beforetoggle', (event: ToggleEvent) => {
+			if (event.oldState == 'closed') {
+				// popover is going to be opened
+				console.log('popover is opening');
+			}
+		});
+	});
 </script>
 
 <!-- 
@@ -52,5 +46,6 @@
 
 <div bind:this={popover} id="myPopover" class="my-popover" popover>
 	<button onclick={closePopover}>Close</button>
-	<p>{message}</p>
+	<h2>{currentData?.title}</h2>
+	<p>{currentData?.message}</p>
 </div>

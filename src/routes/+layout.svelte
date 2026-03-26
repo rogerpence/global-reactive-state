@@ -16,17 +16,6 @@
 	 */
 	let { children } = $props();
 
-	//let showStuff = $state(false);
-
-	// This is an alternative to the $derived below.
-	// $effect(() => {
-	// 	if (actionStore.action) {
-	// 		//console.log('testing');
-	// 		//console.log(JSON.stringify(actionStore.action, null, 4));
-	// 		showStuff = true;
-	// 	}
-	// });
-
 	// !! is a JavaScript idiom to explicitly convert values to true or false, ensuring showStuff
 	// is always a boolean rather than the actual object or undefined.
 
@@ -36,9 +25,8 @@
 
 	$effect(() => {
 		if (actionAvailable && actionStore.action?.type == ActionTypes.TOAST_EMAIL) {
-			//const x = actionStore.action.cargo.message;
 			toast.setData(actionStore.action.cargo);
-			toast.showPopover(); // do something
+			toast.showPopover();
 			actionStore.dispose();
 		}
 	});
@@ -46,17 +34,9 @@
 	afterNavigate(() => {
 		// This function runs after a navigation to a new page has completed.
 		// It calls the reset function from our central store.
-		actionStore.dispose();
+		actionStore?.dispose();
 	});
 </script>
-
-<!-- <link rel="icon" type="image/svg+xml" href="%sveltekit.assets%/favicon.svg" /> -->
-
-<!-- {#if actionAvailable} -->
-<pre>
-	{JSON.stringify(actionStore.action?.cargo, null, 4)}
-</pre>
-<!-- {/if} -->
 
 <svelte:head>
 	{#if dev}
@@ -66,9 +46,7 @@
 	{/if}
 </svelte:head>
 
-<!-- {#if actionStore.action?.type === ActionTypes.TOAST_EMAIL} -->
 <Toast bind:this={toast} />
-<!-- {/if} -->
 
 <div>
 	Action available: {actionAvailable}

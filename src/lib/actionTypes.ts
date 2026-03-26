@@ -3,6 +3,8 @@
  * corresponding payload (cargo) shapes.
  */
 
+import type Toast from './components/Toast.svelte';
+
 // --- Cargo Payloads ---
 
 /**
@@ -30,12 +32,21 @@ export type DownloadProductsCargo = {
 	email: string;
 };
 
+// export const ToastPersona = {
+// 	Download: "DOWNLOAD",
+// 	ContactUs: "CONTACT_US"
+// }
+
+export type ToastPersona = 'DOWNLOAD' | 'CONTACT_US';
+
 /**
  * Defines the shape of the payload for the 'EMAIL SENT toast.
  */
 export type EmailToastCargo = {
+	title: string;
 	email: string;
 	message: string;
+	persona: ToastPersona;
 };
 
 // --- Action Type Definitions ---

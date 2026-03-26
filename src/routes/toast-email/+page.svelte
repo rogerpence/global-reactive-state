@@ -3,13 +3,28 @@
 	import { actionStore } from '$lib/actionStore.svelte';
 	import { ActionTypes, type EmailToastCargo } from '$lib/actionTypes';
 
-	const cargo: EmailToastCargo = {
-		email: 'rp@asna.com',
-		message: 'Your email was sent to ASNA.com. Thank you very much'
+	const userEmail = 'rp@asna.com';
+
+	const downloadEmailCargo: EmailToastCargo = {
+		title: 'Download link on its way',
+		email: userEmail,
+		message: `A download link was emailed to ${userEmail}. It may take a minute or two to arrive. Please don't forget to check your spam folder.`,
+		persona: 'DOWNLOAD'
 	};
 
-	function showEmailToast() {
-		actionStore.trigger(ActionTypes.TOAST_EMAIL, cargo);
+	const contactUsEmailCargo: EmailToastCargo = {
+		title: "Thank you! We'll contact you soon",
+		email: userEmail,
+		message: `Your email from ${userEmail} was sent to ASNA. We'll contact you soon. Thank you!`,
+		persona: 'CONTACT_US'
+	};
+
+	function showDownloadEmailToast() {
+		actionStore.trigger(ActionTypes.TOAST_EMAIL, downloadEmailCargo);
+	}
+
+	function showContactUsEmailToast() {
+		actionStore.trigger(ActionTypes.TOAST_EMAIL, contactUsEmailCargo);
 	}
 
 	let { data }: PageProps = $props();
@@ -19,5 +34,7 @@
 
 This is page 2 -- download products page.
 
-<button onclick={showEmailToast}>Show email toast</button>
-
+<br />
+<button onclick={showDownloadEmailToast}>Show download email toast</button>
+<br />
+<button onclick={showContactUsEmailToast}>Show contact us email toast</button>
