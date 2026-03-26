@@ -15,6 +15,9 @@ body {
   --button-padding: 0.5em 0.75em;
   --paragraph-margin: 1.5em;
   --paragraph-width: 30em;
+  --color-progress-bg: rgba(255, 255, 255, 0.08);
+  --color-progress-bar: linear-gradient(270deg, #ff3b3b 0%, #ffb347 100%);
+
 }
 
 .my-popover {
@@ -44,3 +47,23 @@ body {
   }
 }
 
+
+  .popover-progress {
+    position: static;
+    margin-top: 1.5rem;
+    height: 6px;
+    background: var(--color-progress-bg);
+    border-radius: 1.5rem 1.5rem 0 1.5rem 1.5rem;
+    overflow: hidden;
+    width: 100%;
+    z-index: 2;
+
+  }
+
+  .popover-progress-bar {
+    height: 100%;
+    background: var(--color-progress-bar);
+    width: 100%;
+    transition: width 0.1s linear;
+    float: right; 
+  }
